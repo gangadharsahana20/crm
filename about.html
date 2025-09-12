@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - ERP WebApp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #334155;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 10%;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #007bff;
+    }
+
+    .logo span {
+      color: #6366f1;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #007bff;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #007bff;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .about-hero {
+      padding: 100px 10%;
+      background: linear-gradient(135deg, #1e90ff, #007bff);
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      perspective: 1200px;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+      background-size: cover;
+    }
+
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .shape:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 20%;
+      left: 10%;
+      animation: float 15s ease-in-out infinite;
+    }
+
+    .shape:nth-child(2) {
+      width: 50px;
+      height: 50px;
+      top: 60%;
+      left: 80%;
+      animation: float 12s ease-in-out infinite reverse;
+    }
+
+    .shape:nth-child(3) {
+      width: 70px;
+      height: 70px;
+      top: 70%;
+      left: 15%;
+      animation: float 18s ease-in-out infinite;
+    }
+
+    .shape:nth-child(4) {
+      width: 40px;
+      height: 40px;
+      top: 30%;
+      left: 75%;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+    }
+
+    .about-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      animation: fadeInUp 1.2s ease forwards;
+      opacity: 0;
+    }
+
+    .about-hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+    }
+
+    /* Mission Section */
+    .mission-section {
+      padding: 100px 10%;
+      background: #fff;
+      perspective: 1000px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 60px;
+      color: #1e293b;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #3b82f6, #6366f1);
+      border-radius: 2px;
+    }
+
+    .mission-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .mission-text {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 1s ease;
+    }
+
+    .mission-text.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .mission-text h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #1e293b;
+    }
+
+    .mission-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #64748b;
+      margin-bottom: 30px;
+    }
+
+    .mission-image {
+      position: relative;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 1s ease;
+    }
+
+    .mission-image.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .mission-image img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      transform: rotateY(5deg);
+      transition: transform 0.5s ease;
+    }
+
+    .mission-image:hover img {
+      transform: rotateY(0deg) translateZ(20px);
+    }
+
+    /* Values Section */
+    .values-section {
+      padding: 100px 10%;
+      background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+      perspective: 1000px;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .value-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      transform-style: preserve-3d;
+      transform: translateZ(0);
+      opacity: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, #3b82f6, #6366f1);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .value-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .value-card.show {
+      opacity: 1;
+      transform: translateZ(20px);
+    }
+
+    .value-card:hover {
+      transform: translateY(-10px) rotateY(5deg) rotateX(5deg) translateZ(20px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .value-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      color: white;
+      font-size: 2rem;
+      transform: translateZ(30px);
+      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-icon::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      top: -10px;
+      left: -10px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(2.5);
+        opacity: 0;
+      }
+    }
+
+    .value-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #1e293b;
+    }
+
+    .value-card p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* Team Section */
+    .team-section {
+      padding: 100px 10%;
+      background: #fff;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    .team-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      transform-style: preserve-3d;
+      opacity: 0;
+      transform: translateY(50px);
+      position: relative;
+    }
+
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .team-card:hover::before {
+      opacity: 1;
+    }
+
+    .team-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .team-card:hover {
+      transform: translateY(-10px) rotateY(5deg) translateZ(20px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .team-image {
+      height: 250px;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-image::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') center/cover;
+      opacity: 0.2;
+    }
+
+    .team-info {
+      padding: 25px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .team-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      color: #1e293b;
+    }
+
+    .team-info p {
+      color: #64748b;
+      margin-bottom: 15px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      transition: all 0.3s ease;
+      transform: translateY(10px);
+      opacity: 0;
+    }
+
+    .team-card:hover .social-links a {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .social-links a:hover {
+      background: #3b82f6;
+      color: white;
+      transform: translateY(-3px) scale(1.1);
+    }
+
+    .social-links a:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+    .social-links a:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+    .social-links a:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    /* Timeline Section */
+    .timeline-section {
+      padding: 100px 10%;
+      background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #3b82f6;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      width: 50%;
+      padding: 30px 40px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .timeline-item.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      transform: scale(1.03);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .timeline-content::after {
+      content: '';
+      position: absolute;
+      top: 30px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      transform: rotate(45deg);
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content::after {
+      right: -10px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content::after {
+      left: -10px;
+    }
+
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #3b82f6;
+      position: absolute;
+      top: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.2);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+      }
+    }
+
+    .timeline-date {
+      font-weight: 600;
+      color: #3b82f6;
+      margin-bottom: 10px;
+    }
+
+    .timeline-item h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #1e293b;
+    }
+
+    .timeline-item p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* CTA Section */
+    .about-cta {
+      padding: 100px 10%;
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-cta::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: rotate 15s linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .about-cta h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-cta p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: #e2e8f0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-button {
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      padding: 15px 35px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      background: #2563eb;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+
+    /* Footer */
+    .footer {
+      background: #f1f5f9;
+      color: #334155;
+      padding: 70px 10% 30px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .footer-col h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #1e293b;
+    }
+
+    .footer-col p, .footer-col a {
+      color: #64748b;
+      margin-bottom: 15px;
+      display: block;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-col a:hover {
+      color: #3b82f6;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: #3b82f6;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+      color: #94a3b8;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .mission-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .timeline::before {
+        left: 30px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        text-align: left;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+      
+      .timeline-dot {
+        left: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .values-grid, .team-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">ERP<span>WebApp</span></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html" style="color: #007bff;">About</a>
+      <a href="">Features</a>
+      <a href="">Pricing</a>
+      <a href="">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+    <h1>About ERP WebApp</h1>
+    <p>We're revolutionizing the way businesses manage their employee-customer relationships with our powerful, intuitive platform.</p>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="mission-section">
+    <h2 class="section-title">Our Mission</h2>
+    <div class="mission-content">
+      <div class="mission-text">
+        <h3>Building Bridges Between Employees and Customers</h3>
+        <p>At ERP WebApp, we believe that strong relationships are the foundation of business success. Our mission is to provide tools that foster meaningful connections between your team and your clients.</p>
+        <p>Founded in 2020, we've helped thousands of businesses streamline their operations, improve communication, and drive growth through our innovative platform.</p>
+      </div>
+      <div class="mission-image">
+        <div style="background: linear-gradient(135deg, #3b82f6, #6366f1); height: 300px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; position: relative; overflow: hidden;">
+          <div style="position: absolute; width: 100%; height: 100%; background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover; opacity: 0.2;"></div>
+          <i class="fas fa-users" style="font-size: 4rem; opacity: 0.8; z-index: 1;"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="values-section">
+    <h2 class="section-title">Our Values</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <h3>Innovation</h3>
+        <p>We constantly push boundaries to deliver cutting-edge solutions that anticipate your business needs.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <h3>Integrity</h3>
+        <p>We build trust through transparency, honesty, and ethical business practices in everything we do.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-users-cog"></i>
+        </div>
+        <h3>Collaboration</h3>
+        <p>We believe that the best solutions emerge when we work together with our clients and partners.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section">
+    <h2 class="section-title">Our Team</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-image">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="team-info">
+          <h3>Sarah Johnson</h3>
+          <p>CEO & Founder</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-image">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="team-info">
+          <h3>Michael Chen</h3>
+          <p>CTO</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-image">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="team-info">
+          <h3>Jessica Williams</h3>
+          <p>Head of Design</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-image">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="team-info">
+          <h3>David Brown</h3>
+          <p>Lead Developer</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="timeline-section">
+    <h2 class="section-title">Our Journey</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2020</div>
+          <h3>Company Founded</h3>
+          <p>Started with a vision to revolutionize employee-customer relationship management.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2021</div>
+          <h3>First Product Launch</h3>
+          <p>Released our MVP to early adopters and received overwhelmingly positive feedback.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2022</div>
+          <h3>Series A Funding</h3>
+          <p>Secured $5M in funding to accelerate product development and expand our team.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2023</div>
+          <h3>10,000 Users Milestone</h3>
+          <p>Reached 10,000 active users and expanded to international markets.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2024</div>
+          <h3>Product of the Year</h3>
+          <p>Awarded "Product of the Year" in Business Software category by Tech Awards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="about-cta">
+    <h2>Ready to Transform Your Business?</h2>
+    <p>Join thousands of companies using ERP WebApp to strengthen their employee-customer relationships.</p>
+    <button class="cta-button">Get Started Today</button>
+  </section>
+
+  
+
+<!-- FOOTER SECTION -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Company Info -->
+    <div class="footer-col">
+      <h2 class="logo">ERP<span>Software</span></h2>
+      <p>Building stronger bonds between employees and clients with seamless relationship management.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Testimonials</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-col">
+      <h3>Contact Us</h3>
+      <p>Email: support@ecrmpro.com</p>
+      <p>Phone: +91 98765 43210</p>
+      <p>Address: Bangalore, India</p>
+    </div>
+
+    <!-- Social Media -->
+    <div class="footer-col social">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom -->
+  <div class="footer-bottom">
+    <p>© 2025 ERPSoftware All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- FontAwesome for Icons -->
+<script src="https://kit.fontawesome.com/4a2d9f7c2d.js" crossorigin="anonymous"></script>
+
+<style>
+/* FOOTER */
+.footer {
+  background: #f5f5f5;
+  color: #222;
+  padding: 70px 10% 30px;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Background Glow */
+.footer::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(77,166,255,0.12), transparent 60%);
+  animation: spinGlow 18s linear infinite;
+  z-index: 0;
+}
+@keyframes spinGlow {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 1.2s ease forwards;
+  opacity: 0;
+}
+.footer-col h2.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.footer-col h2 span {
+  color: #4da6ff;
+}
+.footer-col h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  position: relative;
+}
+.footer-col h3::after {
+  content: "";
+  width: 40px;
+  height: 3px;
+  background: #4da6ff;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  border-radius: 2px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-col ul li {
+  margin: 10px 0;
+}
+.footer-col ul li a {
+  color: #333;
+  text-decoration: none;
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
+.footer-col ul li a:hover {
+  color: #4da6ff;
+  transform: translateX(6px) scale(1.05);
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+.social-icons a {
+  font-size: 1.2rem;
+  color: #222;
+  background: #eaeaea;
+  padding: 12px;
+  border-radius: 50%;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s;
+}
+.social-icons a:hover {
+  background: #4da6ff;
+  color: #fff;
+  transform: rotateY(360deg) scale(1.2);
+  box-shadow: 0 8px 20px rgba(77,166,255,0.4);
+}
+
+/* Bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #555;
+  position: relative;
+  z-index: 1;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .social-icons {
+    justify-content: center;
+  }
+}
+</style>
+
+
+
+
+  <script>
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    // Observe elements for animation
+    document.querySelectorAll(".mission-text, .mission-image, .value-card, .team-card, .timeline-item").forEach(el => {
+      observer.observe(el);
+    });
+
+    // Animate hero text
+    setTimeout(() => {
+      document.querySelector('.about-hero h1').style.animation = 'fadeInUp 1.2s ease forwards';
+      document.querySelector('.about-hero p').style.animation = 'fadeInUp 1.5s ease forwards';
+    }, 300);
+  </script>
+</body>
+</html>
