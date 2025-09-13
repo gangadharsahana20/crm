@@ -31,15 +31,16 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       font-family: 'Inter', sans-serif; /* Added for consistency */
     }
 
     .logo {
       font-size: 1.8rem;
       font-weight: 700;
-      color: #007bff;
+      color: #070707;
       font-family: 'Inter', sans-serif; /* Added for consistency */
+      z-index: 1001;
     }
 
     .logo span {
@@ -78,6 +79,37 @@
 
     .nav-links a:hover::after {
       width: 100%;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 100%;
+      background-color: #334155;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
     }
 
     /* Hero Section */
@@ -833,8 +865,33 @@
 
     @media (max-width: 768px) {
       .navbar {
+        padding: 15px 5%;
+      }
+      
+      .nav-links {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
         flex-direction: column;
-        gap: 20px;
+        clip-path: circle(0px at 90% -10%);
+        -webkit-clip-path: circle(0px at 90% -10%);
+        background: #fff;
+        top: 0;
+        left: 0;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        transition: all 0.8s ease-out;
+        z-index: 1000;
+      }
+      
+      .nav-links.active {
+        clip-path: circle(1500px at 90% -10%);
+        -webkit-clip-path: circle(1500px at 90% -10%);
+      }
+      
+      .hamburger {
+        display: flex;
       }
       
       .values-grid, .team-grid {
@@ -844,17 +901,34 @@
       .footer-container {
         grid-template-columns: 1fr;
       }
+      
+      .about-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .about-hero p {
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Navigation -->
   <nav class="navbar">
-    <div class="logo">ERP<span>WebApp</span></div>
+    <div class="logo">ERP<span>Software</span></div>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html" style="color: #007bff;">About</a>
       <a href="features.html">Features</a>
+    </div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </nav>
 
@@ -1243,6 +1317,23 @@
       document.querySelector('.about-hero h1').style.animation = 'fadeInUp 1.2s ease forwards';
       document.querySelector('.about-hero p').style.animation = 'fadeInUp 1.5s ease forwards';
     }, 300);
+
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
   </script>
 </body>
 </html>

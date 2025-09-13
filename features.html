@@ -36,7 +36,7 @@
     .logo {
       font-size: 1.8rem;
       font-weight: 700;
-      color: #007bff;
+      color: #0f0f0f;
     }
 
     .logo span {
@@ -73,6 +73,39 @@
 
     .nav-links a:hover::after {
       width: 100%;
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      z-index: 101;
+    }
+    
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #334155;
+      margin: 2px 0;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
     }
 
     /* Hero Section */
@@ -848,12 +881,48 @@
       .footer-container {
         grid-template-columns: repeat(2, 1fr);
       }
+      
+      /* NEW: Adjust tab layout for medium screens */
+      .showcase-tabs {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .tab-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
     }
 
     @media (max-width: 768px) {
       .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px 5%;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: #fff;
         flex-direction: column;
-        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: right 0.5s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .menu-toggle {
+        display: flex;
       }
       
       .hexagon-grid {
@@ -878,17 +947,103 @@
         left: 50%;
         transform: translateX(-50%);
       }
+      
+      /* NEW: Adjust hero section for mobile */
+      .features-hero {
+        padding: 80px 5%;
+      }
+      
+      .features-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .features-hero p {
+        font-size: 1rem;
+        padding: 0 10px;
+      }
+      
+      /* NEW: Adjust section padding for mobile */
+      .innovative-features,
+      .interactive-showcase,
+      .specialized-solutions {
+        padding: 60px 5%;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      /* NEW: Adjust tab layout for mobile */
+      .showcase-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .tab-btn {
+        width: 80%;
+        text-align: center;
+      }
+      
+      .tab-visual {
+        height: 200px;
+      }
+      
+      .tab-text h3 {
+        font-size: 1.5rem;
+      }
+      
+      .tab-text p {
+        font-size: 1rem;
+        padding: 0 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* NEW: Further adjustments for very small screens */
+      .features-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .hexagon-content, .solution-card {
+        padding: 20px;
+      }
+      
+      .hexagon-icon, .solution-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+      
+      .hexagon-content h3, .solution-card h3 {
+        font-size: 1.2rem;
+      }
+      
+      .tab-btn {
+        width: 90%;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Navigation -->
   <nav class="navbar">
-    <div class="logo">ERP<span>WebApp</span></div>
+    <div class="logo">ERP<span>Software</span></div>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="features.html" style="color: #007bff;">Features</a>
+    </div>
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </nav>
 
@@ -929,7 +1084,7 @@
           <i class="fas fa-users"></i>
         </div>
         <h3>Employee Management</h3>
-        <p>Handle employee profiles, attendance, leave, performance, and communication tools.</p>
+      <p>Handle employee profiles, attendance, leave, performance, and communication tools.</p>
         <button class="hexagon-btn">Manage Employees</button>
       </div>
     </div>
@@ -1119,7 +1274,7 @@
     <div class="footer-container">
       <!-- Company Info -->
       <div class="footer-col">
-        <h2 class="logo">ERP<span>WebApp</span></h2>
+        <h2 class="logo">ERP<span>Software</span></h2>
         <p>Building stronger bonds between employees and clients with seamless relationship management.</p>
       </div>
 
@@ -1219,6 +1374,23 @@
 
     // Animate footer on load
     document.querySelector('.footer-container').style.animation = 'fadeUp 1.2s ease forwards';
+    
+    // NEW: Mobile menu functionality
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
   </script>
 </body>
 </html>
