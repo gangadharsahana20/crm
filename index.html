@@ -15,7 +15,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', sans-serif; /* Updated to use Inter consistently */
     }
 
     body {
@@ -342,6 +342,238 @@
     @media (max-width: 600px) {
       .testimonials-grid { grid-template-columns: 1fr; }
     }
+
+    /* ================= CTA SECTION ================= */
+    .cta-section {
+      padding: 100px 10%;
+      background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      perspective: 1200px;
+    }
+
+    /* Background Glow Animation */
+    .cta-section::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(202, 206, 209, 0.15), transparent 60%);
+      animation: rotateGlow 12s linear infinite;
+    }
+    @keyframes rotateGlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* CTA Content */
+    .cta-content {
+      margin-bottom: 60px;
+      animation: fadeInUp 1.2s ease forwards;
+      opacity: 0;
+    }
+    .cta-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .cta-content h1 span { color: #4da6ff; }
+    .cta-content p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      color: #ccc;
+    }
+    .cta-btn {
+      background: #4da6ff;
+      color: #fff;
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: pulse3D 3s infinite;
+    }
+    .cta-btn:hover {
+      transform: scale(1.1) translateZ(20px);
+      box-shadow: 0 8px 25px rgba(77,166,255,0.6);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .stat-card {
+      background: #cac9c9;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transition: transform 0.4s ease;
+      animation: floatCard 5s ease-in-out infinite;
+    }
+    .stat-card:hover {
+      transform: translateY(-10px) scale(1.05) rotateY(5deg);
+    }
+    .stat-card h2 {
+      font-size: 2rem;
+      color: #4da6ff;
+      margin-bottom: 10px;
+    }
+    .stat-card p {
+      color: #494848;
+      font-size: 1rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { transform: translateY(50px) scale(0.9); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    @keyframes pulse3D {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    @media (max-width: 992px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ================= FOOTER ================= */
+    .footer {
+      background: #f5f5f5;
+      color: #222;
+      padding: 70px 10% 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated Background Glow */
+    .footer::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      left: -30%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(77,166,255,0.12), transparent 60%);
+      animation: spinGlow 18s linear infinite;
+      z-index: 0;
+    }
+    @keyframes spinGlow {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 1.2s ease forwards;
+      opacity: 0;
+    }
+    .footer-col h2.logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .footer-col h2 span {
+      color: #4da6ff;
+    }
+    .footer-col h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      position: relative;
+    }
+    .footer-col h3::after {
+      content: "";
+      width: 40px;
+      height: 3px;
+      background: #4da6ff;
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      border-radius: 2px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-col ul li {
+      margin: 10px 0;
+    }
+    .footer-col ul li a {
+      color: #333;
+      text-decoration: none;
+      transition: transform 0.3s ease, color 0.3s ease;
+      display: inline-block;
+    }
+    .footer-col ul li a:hover {
+      color: #4da6ff;
+      transform: translateX(6px) scale(1.05);
+    }
+
+    /* Social Icons */
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+    .social-icons a {
+      font-size: 1.2rem;
+      color: #222;
+      background: #eaeaea;
+      padding: 12px;
+      border-radius: 50%;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s;
+    }
+    .social-icons a:hover {
+      background: #4da6ff;
+      color: #fff;
+      transform: rotateY(360deg) scale(1.2);
+      box-shadow: 0 8px 20px rgba(77,166,255,0.4);
+    }
+
+    /* Bottom */
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #555;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 600px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .social-icons {
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -395,6 +627,77 @@
     </div>
   </section>
 
+  <!-- CALL TO ACTION SECTION -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h1>Ready to <span>Transform</span> Your Business?</h1>
+      <p>Join thousands of companies already using our ECRM to manage employees, clients, and projects effortlessly.</p>
+      <button class="cta-btn">Get Started →</button>
+    </div>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h2>500+</h2>
+        <p>Happy Clients</p>
+      </div>
+      <div class="stat-card">
+        <h2>1200+</h2>
+        <p>Projects Completed</p>
+      </div>
+      <div class="stat-card">
+        <h2>98%</h2>
+        <p>Client Retention</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER SECTION -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <!-- Company Info -->
+      <div class="footer-col">
+        <h2 class="logo">ERP<span>Software</span></h2>
+        <p>Building stronger bonds between employees and clients with seamless relationship management.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="features.html">Features</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p>Email: support@ecrmpro.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Address: Bangalore, India</p>
+      </div>
+
+      <!-- Social Media -->
+      <div class="footer-col social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+      <p>© 2025 ERPSoftware All Rights Reserved.</p>
+    </div>
+  </footer>
+
   <!-- JavaScript for Card Tilt + Scroll Animations -->
   <script>
     // Hero card tilt
@@ -419,336 +722,5 @@
 
     document.querySelectorAll(".features-section, .feature-card, .why-section, .why-card, .testimonials-section").forEach(el => observer.observe(el));
   </script>
-
-
-
-
-
-<!-- CALL TO ACTION SECTION -->
-<section class="cta-section">
-  <div class="cta-content">
-    <h1>Ready to <span>Transform</span> Your Business?</h1>
-    <p>Join thousands of companies already using our ECRM to manage employees, clients, and projects effortlessly.</p>
-    <button class="cta-btn">Get Started →</button>
-  </div>
-  
-  <div class="stats-grid">
-    <div class="stat-card">
-      <h2>500+</h2>
-      <p>Happy Clients</p>
-    </div>
-    <div class="stat-card">
-      <h2>1200+</h2>
-      <p>Projects Completed</p>
-    </div>
-    <div class="stat-card">
-      <h2>98%</h2>
-      <p>Client Retention</p>
-    </div>
-  </div>
-</section>
-
-<style>
-/* CTA SECTION */
-.cta-section {
-  padding: 100px 10%;
-  background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
-  color: #fff;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  perspective: 1200px;
-}
-
-/* Background Glow Animation */
-.cta-section::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(202, 206, 209, 0.15), transparent 60%);
-  animation: rotateGlow 12s linear infinite;
-}
-@keyframes rotateGlow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* CTA Content */
-.cta-content {
-  margin-bottom: 60px;
-  animation: fadeInUp 1.2s ease forwards;
-  opacity: 0;
-}
-.cta-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-.cta-content h1 span { color: #4da6ff; }
-.cta-content p {
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-  color: #ccc;
-}
-.cta-btn {
-  background: #4da6ff;
-  color: #fff;
-  padding: 14px 32px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: pulse3D 3s infinite;
-}
-.cta-btn:hover {
-  transform: scale(1.1) translateZ(20px);
-  box-shadow: 0 8px 25px rgba(77,166,255,0.6);
-}
-
-/* Stats Grid */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
-.stat-card {
-  background: #cac9c9;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-  transition: transform 0.4s ease;
-  animation: floatCard 5s ease-in-out infinite;
-}
-.stat-card:hover {
-  transform: translateY(-10px) scale(1.05) rotateY(5deg);
-}
-.stat-card h2 {
-  font-size: 2rem;
-  color: #4da6ff;
-  margin-bottom: 10px;
-}
-.stat-card p {
-  color: #494848;
-  font-size: 1rem;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from { transform: translateY(50px) scale(0.9); opacity: 0; }
-  to { transform: translateY(0) scale(1); opacity: 1; }
-}
-@keyframes pulse3D {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-}
-@keyframes floatCard {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-  .stats-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 600px) {
-  .stats-grid { grid-template-columns: 1fr; }
-}
-</style>
-
-
-
-
-
-
-<!-- FOOTER SECTION -->
-<footer class="footer">
-  <div class="footer-container">
-
-    <!-- Company Info -->
-    <div class="footer-col">
-      <h2 class="logo">ERP<span>Software</span></h2>
-      <p>Building stronger bonds between employees and clients with seamless relationship management.</p>
-    </div>
-
-    <!-- Quick Links -->
-    <div class="footer-col">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="#">Features</a></li>
-        <li><a href="#">Testimonials</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-
-    <!-- Contact Info -->
-    <div class="footer-col">
-      <h3>Contact Us</h3>
-      <p>Email: support@ecrmpro.com</p>
-      <p>Phone: +91 98765 43210</p>
-      <p>Address: Bangalore, India</p>
-    </div>
-
-    <!-- Social Media -->
-    <div class="footer-col social">
-      <h3>Follow Us</h3>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Bottom -->
-  <div class="footer-bottom">
-    <p>© 2025 ERPSoftware All Rights Reserved.</p>
-  </div>
-</footer>
-
-<!-- FontAwesome for Icons -->
-<script src="https://kit.fontawesome.com/4a2d9f7c2d.js" crossorigin="anonymous"></script>
-
-<style>
-/* FOOTER */
-.footer {
-  background: #f5f5f5;
-  color: #222;
-  padding: 70px 10% 30px;
-  font-family: 'Poppins', sans-serif;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Animated Background Glow */
-.footer::before {
-  content: "";
-  position: absolute;
-  top: -30%;
-  left: -30%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(77,166,255,0.12), transparent 60%);
-  animation: spinGlow 18s linear infinite;
-  z-index: 0;
-}
-@keyframes spinGlow {
-  0% { transform: rotate(0deg);}
-  100% { transform: rotate(360deg);}
-}
-
-.footer-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  position: relative;
-  z-index: 1;
-  animation: fadeUp 1.2s ease forwards;
-  opacity: 0;
-}
-.footer-col h2.logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-}
-.footer-col h2 span {
-  color: #4da6ff;
-}
-.footer-col h3 {
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  position: relative;
-}
-.footer-col h3::after {
-  content: "";
-  width: 40px;
-  height: 3px;
-  background: #4da6ff;
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  border-radius: 2px;
-}
-
-.footer-col ul {
-  list-style: none;
-  padding: 0;
-}
-.footer-col ul li {
-  margin: 10px 0;
-}
-.footer-col ul li a {
-  color: #333;
-  text-decoration: none;
-  transition: transform 0.3s ease, color 0.3s ease;
-  display: inline-block;
-}
-.footer-col ul li a:hover {
-  color: #4da6ff;
-  transform: translateX(6px) scale(1.05);
-}
-
-/* Social Icons */
-.social-icons {
-  display: flex;
-  gap: 15px;
-}
-.social-icons a {
-  font-size: 1.2rem;
-  color: #222;
-  background: #eaeaea;
-  padding: 12px;
-  border-radius: 50%;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s;
-}
-.social-icons a:hover {
-  background: #4da6ff;
-  color: #fff;
-  transform: rotateY(360deg) scale(1.2);
-  box-shadow: 0 8px 20px rgba(77,166,255,0.4);
-}
-
-/* Bottom */
-.footer-bottom {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 0.9rem;
-  color: #555;
-  position: relative;
-  z-index: 1;
-}
-
-/* Animations */
-@keyframes fadeUp {
-  from { transform: translateY(40px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-  .footer-container {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (max-width: 600px) {
-  .footer-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .social-icons {
-    justify-content: center;
-  }
-}
-</style>
-
-
-
-
 </body>
 </html>
